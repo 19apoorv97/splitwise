@@ -1,8 +1,7 @@
 package org.example.splitwise.model;
 
 import lombok.*;
-
-import java.util.List;
+import java.util.Map;
 
 @Builder
 @AllArgsConstructor
@@ -10,9 +9,19 @@ import java.util.List;
 @Getter
 @Setter
 public class Ledger {
+    int id;
     User lender;
-    List<User> borrowers;
+    Map<User,Double> borrowersToShareMap;
     double amount;
     String category;
     String splitType;
 }
+/*
+public class ExpenseSplitDTO {
+    private String userId;
+    private double amount;      // used by ExactExpenseStrategy
+    private double percentage;   // used by PercentExpenseStrategy
+
+    // Constructors, getters, and setters
+}
+* */

@@ -1,6 +1,6 @@
 package org.example.splitwise.service;
 
-import org.example.splitwise.enums.ExpenseCategory;
+import org.example.splitwise.enums.SplitType;
 import org.example.splitwise.factory.ExpenseFactory;
 import org.example.splitwise.model.Ledger;
 import org.example.splitwise.strategy.IExpenseStrategy;
@@ -17,9 +17,9 @@ public class LedgerService {
         ledgerList = new ArrayList<>();
     }
 
-    public List<Ledger> addLedger(Ledger ledger, ExpenseCategory category){
-        ledger.setSplitType(category.name());
-        IExpenseStrategy strategy = expenseFactory.createExpenseObject(category);
+    public List<Ledger> addLedger(Ledger ledger, SplitType splitType){
+        ledger.setSplitType(splitType.name());
+        IExpenseStrategy strategy = expenseFactory.createExpenseObject(splitType);
         splitwiseService.splitAndAdd(ledger,strategy);
         ledgerList.add(ledger);
         return ledgerList;
