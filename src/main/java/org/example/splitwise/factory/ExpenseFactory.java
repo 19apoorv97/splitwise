@@ -2,9 +2,9 @@ package org.example.splitwise.factory;
 
 import org.example.splitwise.enums.SplitType;
 import org.example.splitwise.strategy.IExpenseStrategy;
-import org.example.splitwise.strategy.impl.EqualExpenseStrategy;
-import org.example.splitwise.strategy.impl.ExactExpenseStrategy;
-import org.example.splitwise.strategy.impl.PercentExpenseStrategy;
+import org.example.splitwise.strategy.impl.expense_strategy.EqualExpenseStrategy;
+import org.example.splitwise.strategy.impl.expense_strategy.ExactExpenseStrategy;
+import org.example.splitwise.strategy.impl.expense_strategy.PercentExpenseStrategy;
 
 public class ExpenseFactory {
     public IExpenseStrategy createExpenseObject(SplitType splitType){
