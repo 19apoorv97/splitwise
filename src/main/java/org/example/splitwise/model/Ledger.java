@@ -1,11 +1,12 @@
 package org.example.splitwise.model;
 
 import lombok.*;
+
+import java.util.HashMap;
 import java.util.Map;
 
 @Builder
 @AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
 public class Ledger {
@@ -15,6 +16,10 @@ public class Ledger {
     double amount;
     String category;
     String splitType;
+
+    public Ledger(){
+        this.borrowersToShareMap = new HashMap<>();
+    }
 }
 /*
 public class ExpenseSplitDTO {

@@ -4,10 +4,15 @@ import org.example.splitwise.model.Ledger;
 import org.example.splitwise.model.User;
 import org.example.splitwise.strategy.IExpenseStrategy;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class SplitwiseService {
     Map<User, Map<User,Double>> borrowerToLenderMap;
+
+    public SplitwiseService(){
+        borrowerToLenderMap = new HashMap<>();
+    }
 
     public void splitAndAdd(Ledger ledger, IExpenseStrategy strategy){
         Map<User,Double> borrowerToExactAmountMap = strategy.splitExpense(ledger);
@@ -26,6 +31,9 @@ public class SplitwiseService {
                 borrowerToLenderMap.put(borrowerEntry.getKey(),howMuchLendsToWhomMap);
             }
         }
+    }
 
+    public Map<User, Map<User, Double>> getBorrowerToLenderMap() {
+        return borrowerToLenderMap;
     }
 }
