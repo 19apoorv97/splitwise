@@ -10,6 +10,23 @@ import java.util.Map;
 
 
 public class Main {
+
+    public static void printData(SplitExpenseMappingResponse response){
+        if(!response.getBorrowerToLenderMap().isEmpty()){
+            for(Map.Entry<User, Map<User,Double>> borrowersEntry :response.getBorrowerToLenderMap().entrySet()){
+                Map<User,Double> borrowersEntryValueMap = borrowersEntry.getValue();
+                if(!borrowersEntryValueMap.isEmpty()){
+                    User borrower = borrowersEntry.getKey();
+                    for(Map.Entry<User,Double> moneyOwsEntry:borrowersEntryValueMap.entrySet()){
+                        User lender = moneyOwsEntry.getKey();
+                        double amount = moneyOwsEntry.getValue();
+                        System.out.println(borrower.getName()+" owes "+amount+" Rs to "+ lender.getName());
+                    }
+                }
+            }
+        }
+    }
+
     public static void main(String[] args) {
         User u1 = User.builder().id(1).name("Apoorv").email("apoorv@gmail.com").phone("9876543210").build();
         User u2 = User.builder().id(1).name("Keshav").email("keshav@gmail.com").phone("9876543120").build();
@@ -29,18 +46,6 @@ public class Main {
         SplitwiseController splitwiseController = new SplitwiseController();
         SplitExpenseMappingResponse response = splitwiseController.addLedgerAndSplitBill(l1,SplitType.PERCENTAGE);
 
-        if(!response.getBorrowerToLenderMap().isEmpty()){
-            for(Map.Entry<User, Map<User,Double>> borrowersEntry :response.getBorrowerToLenderMap().entrySet()){
-                Map<User,Double> borrowersEntryValueMap = borrowersEntry.getValue();
-                if(!borrowersEntryValueMap.isEmpty()){
-                    User borrower = borrowersEntry.getKey();
-                    for(Map.Entry<User,Double> moneyOwsEntry:borrowersEntryValueMap.entrySet()){
-                        User lender = moneyOwsEntry.getKey();
-                        double amount = moneyOwsEntry.getValue();
-                        System.out.println(borrower.getName()+" owes "+amount+" Rs to "+ lender.getName());
-                    }
-                }
-            }
-        }
+        printData(response);
     }
 }
