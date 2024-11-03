@@ -29,6 +29,18 @@ public class Main {
         SplitwiseController splitwiseController = new SplitwiseController();
         SplitExpenseMappingResponse response = splitwiseController.addLedgerAndSplitBill(l1,SplitType.PERCENTAGE);
 
-        System.out.println(response.getBorrowerToLenderMap());
+        if(!response.getBorrowerToLenderMap().isEmpty()){
+            for(Map.Entry<User, Map<User,Double>> borrowersEntry :response.getBorrowerToLenderMap().entrySet()){
+                Map<User,Double> borrowersEntryValueMap = borrowersEntry.getValue();
+                if(!borrowersEntryValueMap.isEmpty()){
+                    User borrower = borrowersEntry.getKey();
+                    for(Map.Entry<User,Double> moneyOwsEntry:borrowersEntryValueMap.entrySet()){
+                        User lender = moneyOwsEntry.getKey();
+                        double amount = moneyOwsEntry.getValue();
+                        System.out.println(borrower.getName()+" owes "+amount+" Rs to "+ lender.getName());
+                    }
+                }
+            }
+        }
     }
 }
