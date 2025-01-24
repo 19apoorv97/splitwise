@@ -20,7 +20,7 @@ public class Main {
                     for(Map.Entry<User,Double> moneyOwsEntry:borrowersEntryValueMap.entrySet()){
                         User lender = moneyOwsEntry.getKey();
                         double amount = moneyOwsEntry.getValue();
-                        System.out.println(borrower.getName()+" owes "+amount+" Rs to "+ lender.getName());
+                        System.out.println(borrower.getName()+" owes "+amount+" rs to "+ lender.getName());
                     }
                 }
             }
